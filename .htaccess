@@ -1,7 +1,9 @@
 RewriteEngine on
 #RewriteRule ^(.*\.(gif|jp?g|png))$ watermark.php?image=$1&watermark=watermark.jpg [NC]
 
-RewriteCond %{REQUEST_URI} ^/images/watermark/[^/]+\.jpe?g$ [NC]
+RewriteCond %{REQUEST_URI} \.(gif|jpe?g|png)$ [NC]
+# Watermark images from specific directory only
+RewriteCond %{REQUEST_URI} ^/images/
 RewriteCond %{REQUEST_URI} !^/images/\.cache/\.watermark/
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule .* /images/.cache/.watermark/$0 [L]
